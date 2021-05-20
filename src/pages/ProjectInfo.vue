@@ -107,8 +107,6 @@ import { phasesModule } from "../store/phases";
 import { projectsModule } from "../store/projects";
 import { tasksModule } from "../store/tasks";
 import { getProfit } from "../constants";
-import { settingsModule } from "../store/settings";
-import { rolesModule } from "../store/roles";
 export default {
   components: { PhaseInfo, Others },
   data() {
@@ -174,16 +172,12 @@ export default {
         Promise.all([
           phasesModule.getPhasesFromId(this.id),
           tasksModule.getTasks(),
-          projectsModule.getOthers(this.id),
-          settingsModule.getSettings(),
-          rolesModule.getRoles(),
+          projectsModule.getOthers(this.id)
         ]).then(
           ([
             responsePhases,
             responseTasks,
             responseOthers,
-            responseSettings,
-            responseRoles,
           ]) => {
             window.project.phases = {};
             window.project.tasks = {};
@@ -201,8 +195,6 @@ export default {
                 (task) => task.phaseId === item.id
               );
             });
-            window.roles = responseRoles.data;
-            window.settings = responseSettings.data;
             getProfit();
             this.clearProjectProfit = window.clearProfit || 0;
             this.projectSalary = window.projectSalary || 0;
@@ -279,11 +271,11 @@ export default {
         ? 3
         : 1;
       if (window.project.id) {
-        projectsModule.updateProject(window.project).then(() => {
+        projectsModule.updateProject(window.project).finally(() => {
           this.$router.push("/projects");
         });
       } else {
-        projectsModule.addProject(window.project).then(() => {
+        projectsModule.addProject(window.project).finally(() => {
           this.$router.push("/projects");
         });
       }

@@ -54,6 +54,8 @@
 <script>
 import Login from "./pages/Login";
 import { usersModule } from "./store/users";
+import { settingsModule } from "./store/settings";
+import { rolesModule } from "./store/roles";
 export default {
   components: { Login },
   data() {
@@ -62,7 +64,11 @@ export default {
       items: [
         { title: "Проекты", icon: "mdi-book", link: "projects" },
         { title: "Роли", icon: "mdi-account", link: "roles" },
-        { title: "Настройки", icon: "mdi-book-open-page-variant", link: "settings" },
+        {
+          title: "Настройки",
+          icon: "mdi-book-open-page-variant",
+          link: "settings",
+        },
         {
           title: "Выйти",
           icon: "mdi-logout-variant",
@@ -85,6 +91,12 @@ export default {
       2: "В прогрессе",
       3: "Завершен",
     };
+    Promise.all([settingsModule.getSettings(), rolesModule.getRoles()]).then(
+      ([responseSettings, responseRoles]) => {
+        window.roles = responseRoles.data;
+        window.settings = responseSettings.data;
+      }
+    );
   },
   methods: {
     userStateChanged() {

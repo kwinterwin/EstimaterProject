@@ -13,10 +13,10 @@ export function getProfit() {
     Object.values(window.project.tasks).forEach((phaseTasksArray) => {
         let phaseSum = phaseTasksArray.reduce((sum, task) => {
             let executor = roles.find((role) => role.id === task.executorId);
-            return sum + parseFloat(parseFloat(executor.salaryHour) * ((parseFloat(task.maxHours) + parseFloat(task.maxHours)) / 2));
+            return sum + parseFloat(parseFloat(executor.salaryHour) * ((parseFloat(task.maxHours) + parseFloat(task.minHours)) / 2));
         }, 0);
         let phase = phases[phaseTasksArray[0].phaseId];
-        phaseSum = phaseSum * ((Number(phase.generalQAPercentage) + Number(phase.generalPMPercentage) + Number(phase.generalBugsPercentage)) / 100);
+        phaseSum = phaseSum * (((Number(phase.generalQAPercentage) + Number(phase.generalPMPercentage) + Number(phase.generalBugsPercentage)) / 100) || 1);
         projectSalary += phaseSum;
     });
     window.projectSalary = parseFloat(projectSalary.toFixed(2));

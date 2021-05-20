@@ -66,7 +66,7 @@ let projectsData = {
                         });
                     });
                 }
-                res.json({});
+                res.json({ text: 'good' });
             }
         });
     },
@@ -79,7 +79,7 @@ let projectsData = {
                 res.status(500).send(err);
                 console.log(err);
             }
-            else {
+            else if(!req.body.name){
                 res.json(result);
             }
         });
