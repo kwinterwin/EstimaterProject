@@ -4,7 +4,7 @@ let tasksData = {
 
 	getTasksForPhaseId(req, res) {
 		let query;
-		if (req.query?.phaseId) {
+		if (req.query && req.query.phaseId) {
 			query = `select * from estimater.tasks where phaseId=${req.query.phaseId}`;
 		} else {
 			query = 'select * from estimater.tasks';

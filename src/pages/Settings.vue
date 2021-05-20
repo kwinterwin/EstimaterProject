@@ -11,7 +11,7 @@
         class="form_item"
       ></v-text-field>
     </v-form>
-    <v-btn color="primary"> Изменить сохранения </v-btn>
+    <v-btn color="primary" @click="update()"> Сохранить изменения </v-btn>
   </div>
 </template>
 <script>
@@ -27,6 +27,11 @@ export default {
       this.settings = response.data;
     });
   },
+  methods:{
+    update(){
+      settingsModule.updateSetings(this.settings);
+    }
+  }
 };
 </script>
 <style scoped>

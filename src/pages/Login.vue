@@ -13,7 +13,7 @@
     </v-snackbar>
     <v-container fill-height justify-center align-centerelevation="5">
       <v-flex class="forms">
-        <v-tabs>
+        <v-tabs class="login_tabs">
           <v-tab @click="toggle">Вход</v-tab>
           <v-tab @click="toggle">Регистрация</v-tab>
         </v-tabs>
@@ -118,5 +118,8 @@ export default {
 .forms {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   padding: 20px 60px 20px 60px;
+}
+.v-slide-group__content{
+  background-color: #fafafa !important;
 }
 </style>

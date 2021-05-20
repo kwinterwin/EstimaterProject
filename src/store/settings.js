@@ -4,9 +4,9 @@ function getSettings() {
     return axios.get("http://localhost:5354/settings");
 }
 
-// function addRole(role) {
-//     return axios.post("http://localhost:5354/roles", role);
-// }
+function updateSetings(settings) {
+    return axios.post("http://localhost:5354/settings", settings);
+}
 
 // function deleteRole(id) {
 //     return axios.delete("http://localhost:5354/roles", { data: { id } });
@@ -17,6 +17,7 @@ function getSettings() {
 // }
 
 export const settingsModule = {
-    getSettings
+    getSettings,
+    updateSetings
 };
 

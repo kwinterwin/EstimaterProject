@@ -14,7 +14,7 @@ let usersData = {
 				console.log(err);
 			}
 			console.log(result);
-			if (result?.length == 1) {
+			if (result && result.length == 1) {
 				res.send(result[0]);
 			} else {
 				res.json({ type: "error", "message": "Вы ввели неверный логин или пароль." });

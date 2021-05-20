@@ -50,6 +50,7 @@ app.post("/projects", projects.addProject);
 app.delete('/projects', projects.deleteProject);
 app.get('/phases', phases.getPhasesForId);
 app.get("/settings", settings.getAllSettings);
+app.post('/settings', settings.updateSettings);
 app.post('/projects/update', (req, res) => {
 	projects.deleteProject(req, res);
 	projects.addProject(req, res);
